@@ -3,7 +3,7 @@
 import React from 'react';
 import { Movie } from '@/types/movie';
 import { getImageUrl } from '@/lib/tmdb';
-import { Star, Play, Info, Bookmark, BookmarkCheck, Radio, Users } from 'lucide-react';
+import { Star, Play, Info, Bookmark, BookmarkCheck, Calendar, Users } from 'lucide-react';
 
 interface MovieCardProps {
   movie: Movie;
@@ -41,13 +41,18 @@ export default function MovieCard({
             <span>{movie.vote_average.toFixed(1)}</span>
           </div>
 
-          {/* Live Stream Pill */}
-          {movie.is_streaming_live && (
+          {/* Conditional Badges */}
+          {movie.is_upcoming ? (
+            <div className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-cyan-950/90 border border-cyan-400 text-cyan-300 text-[10px] font-black tracking-tight shadow">
+              <Calendar className="w-2.5 h-2.5" />
+              SOON
+            </div>
+          ) : movie.is_streaming_live ? (
             <div className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-cyan-950/90 border border-cyan-400/80 text-cyan-300 text-[10px] font-extrabold tracking-tight shadow">
               <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
               LIVE
             </div>
-          )}
+          ) : null}
         </div>
 
         {/* Hover Overlay with Action Buttons */}
@@ -59,6 +64,13 @@ export default function MovieCard({
             </div>
           )}
 
+          {movie.is_upcoming && (
+            <div className="flex items-center gap-1 text-[11px] text-cyan-200 font-semibold pb-1">
+              <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Premiere: {movie.release_date}</span>
+            </div>
+          )}
+
           <div className="flex items-center gap-2">
             <button
               onClick={(e) => {
@@ -66,10 +78,10 @@ export default function MovieCard({
                 onJoinWatchParty(movie);
               }}
               className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl gradient-reel text-white text-xs font-bold shadow-md shadow-cyan-500/30 hover:brightness-110 active:scale-95 transition-all"
-              title="Stream & Chat"
+              title={movie.is_upcoming ? "Watch Trailer" : "Stream & Chat"}
             >
               <Play className="w-3.5 h-3.5 fill-white" />
-              Stream
+              {movie.is_upcoming ? "Trailer" : "Stream"}
             </button>
 
             <button
@@ -114,9 +126,9 @@ export default function MovieCard({
           {movie.title}
         </h3>
         <div className="flex items-center justify-between text-xs text-slate-400 font-medium pt-0.5">
-          <span>{releaseYear}</span>
-          <span className="text-[11px] px-1.5 py-0.2 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">
-            {movie.genres[0] || 'Feature'}
+          <span className="font-mono text-cyan-400/90 font-semibold">{releaseYear}</span>
+          <span className="text-[11px] px-1.5 py-0.2 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60 truncate max-w-[90px]">
+            {movie.genres[0] || 'Cinema'}
           </span>
         </div>
       </div>

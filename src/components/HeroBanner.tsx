@@ -3,7 +3,7 @@
 import React from 'react';
 import { Movie } from '@/types/movie';
 import { getImageUrl, formatRuntime } from '@/lib/tmdb';
-import { Play, Info, Star, Radio, Users, Bookmark, BookmarkCheck } from 'lucide-react';
+import { Play, Info, Star, Radio, Users, Bookmark, BookmarkCheck, Calendar } from 'lucide-react';
 
 interface HeroBannerProps {
   movie: Movie;
@@ -40,9 +40,14 @@ export default function HeroBanner({
       {/* Hero Content */}
       <div className="relative z-10 max-w-7xl mx-auto h-full flex flex-col justify-end pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl space-y-4">
-          {/* Live Watch Party Tag if live */}
+          {/* Status Badges */}
           <div className="flex flex-wrap items-center gap-2.5">
-            {movie.is_streaming_live && (
+            {movie.is_upcoming ? (
+              <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-400 text-cyan-300 text-xs font-bold tracking-wide shadow-lg shadow-cyan-500/20">
+                <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+                COMING TO THEATERS • {movie.release_date}
+              </span>
+            ) : movie.is_streaming_live ? (
               <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-400 text-cyan-300 text-xs font-bold tracking-wide shadow-lg shadow-cyan-500/20">
                 <Radio className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
                 TWITCH WATCHPARTY LIVE
@@ -51,7 +56,7 @@ export default function HeroBanner({
                   {movie.live_viewers?.toLocaleString()}
                 </span>
               </span>
-            )}
+            ) : null}
 
             {/* IMDb Golden Score Badge */}
             <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold">
@@ -110,7 +115,7 @@ export default function HeroBanner({
               className="flex items-center gap-2 px-6 py-3 rounded-xl gradient-reel gradient-reel-hover text-white text-sm font-bold tracking-wide shadow-lg shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
             >
               <Play className="w-4 h-4 fill-white" />
-              Enter Live Watchroom
+              {movie.is_upcoming ? 'Watch Official Trailer' : 'Enter Live Watchroom'}
             </button>
 
             <button

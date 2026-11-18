@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Film, Radio, Search, Bell, Users, Tv, Bookmark } from 'lucide-react';
+import { Film, Radio, Search, Users, Bookmark, Sparkles, History, Calendar } from 'lucide-react';
 
 interface NavbarProps {
   onSearch: (query: string) => void;
@@ -9,6 +9,8 @@ interface NavbarProps {
   setActiveTab: (tab: string) => void;
   onOpenLiveWatchroom: () => void;
   watchlistCount: number;
+  hasLiveParties: boolean;
+  upcomingCount?: number;
 }
 
 export default function Navbar({
@@ -17,6 +19,8 @@ export default function Navbar({
   setActiveTab,
   onOpenLiveWatchroom,
   watchlistCount,
+  hasLiveParties,
+  upcomingCount = 4,
 }: NavbarProps) {
   const [searchValue, setSearchValue] = useState('');
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
@@ -31,22 +35,28 @@ export default function Navbar({
     <header className="sticky top-0 z-40 w-full glass-panel border-b border-white/5 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4">
         {/* Brand Logo */}
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-6">
           <div
             onClick={() => setActiveTab('explore')}
             className="flex items-center gap-2.5 cursor-pointer group select-none"
           >
             <div className="w-10 h-10 rounded-xl gradient-reel flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-400/40 transition-all">
-              <Film className="w-5 h-5 text-white animate-pulse" />
+              <Film className="w-5 h-5 text-white" />
             </div>
             <div>
               <div className="flex items-center gap-1.5">
                 <span className="text-xl font-black tracking-wider bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-300 bg-clip-text text-transparent">
                   REELROOM
                 </span>
-                <span className="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-cyan-950/80 text-cyan-300 border border-cyan-500/30">
-                  LIVE
-                </span>
+                {hasLiveParties ? (
+                  <span className="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-cyan-950/90 text-cyan-300 border border-cyan-400/50 shadow-sm shadow-cyan-500/20">
+                    LIVE
+                  </span>
+                ) : (
+                  <span className="text-[10px] uppercase font-semibold px-1.5 py-0.5 rounded bg-slate-900 text-slate-400 border border-slate-800">
+                    CINEMA
+                  </span>
+                )}
               </div>
               <p className="text-[10px] text-slate-400 font-medium tracking-tight">
                 Stream • Chat • Cinephile Hub
@@ -55,7 +65,7 @@ export default function Navbar({
           </div>
 
           {/* Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1">
             <button
               onClick={() => setActiveTab('explore')}
               className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
@@ -66,10 +76,14 @@ export default function Navbar({
             >
               Browse
             </button>
+
+            {/* Watch Parties Button with conditional blinking indicator */}
             <button
               onClick={() => {
                 setActiveTab('watchrooms');
-                onOpenLiveWatchroom();
+                if (hasLiveParties) {
+                  onOpenLiveWatchroom();
+                }
               }}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
                 activeTab === 'watchrooms'
@@ -77,10 +91,43 @@ export default function Navbar({
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
             >
-              <Radio className="w-4 h-4 text-cyan-400 animate-pulse" />
+              <Radio className={`w-4 h-4 ${hasLiveParties ? 'text-cyan-400 animate-pulse' : 'text-slate-400'}`} />
               Watch Parties
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              {hasLiveParties && (
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              )}
             </button>
+
+            {/* Upcoming Movies Tab */}
+            <button
+              onClick={() => setActiveTab('upcoming')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
+                activeTab === 'upcoming'
+                  ? 'text-cyan-300 bg-cyan-950/60 border border-cyan-500/30'
+                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <Calendar className="w-4 h-4 text-cyan-400" />
+              Coming Soon
+              <span className="text-[10px] font-bold px-1.5 py-0.2 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                {upcomingCount}
+              </span>
+            </button>
+
+            {/* Cinema Vault: Since the start of cinema */}
+            <button
+              onClick={() => setActiveTab('history')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
+                activeTab === 'history'
+                  ? 'text-amber-300 bg-amber-950/40 border border-amber-500/30'
+                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <History className="w-4 h-4 text-amber-400" />
+              Cinema History (1927–Now)
+            </button>
+
+            {/* IMDb High Score */}
             <button
               onClick={() => setActiveTab('imdb_top')}
               className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
@@ -91,6 +138,8 @@ export default function Navbar({
             >
               IMDb High Score
             </button>
+
+            {/* Watchlist */}
             <button
               onClick={() => setActiveTab('watchlist')}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
@@ -115,13 +164,13 @@ export default function Navbar({
           {/* Search bar */}
           <div
             className={`relative flex items-center rounded-xl bg-slate-900/80 border border-slate-700/60 px-3 py-1.5 transition-all duration-300 ${
-              isSearchExpanded ? 'w-56 sm:w-72 border-cyan-500/60 ring-2 ring-cyan-500/20' : 'w-44 sm:w-60'
+              isSearchExpanded ? 'w-52 sm:w-64 border-cyan-500/60 ring-2 ring-cyan-500/20' : 'w-40 sm:w-56'
             }`}
           >
             <Search className="w-4 h-4 text-cyan-400 mr-2 shrink-0" />
             <input
               type="text"
-              placeholder="Search movies, actors, IMDb ID..."
+              placeholder="Search by title, year, director..."
               value={searchValue}
               onChange={handleSearchChange}
               onFocus={() => setIsSearchExpanded(true)}
@@ -141,18 +190,17 @@ export default function Navbar({
             )}
           </div>
 
-          {/* Live Community Stream Pill */}
-          <button
-            onClick={onOpenLiveWatchroom}
-            className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-cyan-500/30 hover:border-cyan-400 text-xs font-medium text-slate-200 transition-all shadow-md group"
-          >
+          {/* Online Fans indicator */}
+          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-cyan-500/30 text-xs font-medium text-slate-200 shadow-md">
             <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+              {hasLiveParties && (
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+              )}
               <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
             </span>
             <Users className="w-3.5 h-3.5 text-cyan-400" />
             <span className="font-semibold text-cyan-300">8,270</span> Online
-          </button>
+          </div>
 
           {/* User Discord-like Avatar Profile */}
           <div className="flex items-center gap-2 pl-2 border-l border-white/10">
