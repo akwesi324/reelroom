@@ -35,17 +35,24 @@ export default function MovieCard({
 
         {/* Top Badges */}
         <div className="absolute top-2 left-2 right-2 flex items-center justify-between pointer-events-none">
-          {/* IMDb Score */}
-          <div className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md border border-amber-500/40 text-amber-300 text-[11px] font-bold shadow">
-            <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-            <span>{movie.vote_average.toFixed(1)}</span>
-          </div>
+          {/* IMDb Score or Anticipation for Upcoming */}
+          {movie.is_upcoming ? (
+            <div className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md border border-cyan-500/40 text-cyan-300 text-[10px] font-extrabold shadow">
+              <span className="bg-cyan-500 text-black px-1 rounded text-[9px] font-black">HYPE</span>
+              <span>{movie.anticipated_score || 98}%</span>
+            </div>
+          ) : (
+            <div className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md border border-amber-500/40 text-amber-300 text-[11px] font-bold shadow">
+              <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+              <span>{movie.vote_average.toFixed(1)}</span>
+            </div>
+          )}
 
           {/* Conditional Badges */}
           {movie.is_upcoming ? (
             <div className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-cyan-950/90 border border-cyan-400 text-cyan-300 text-[10px] font-black tracking-tight shadow">
               <Calendar className="w-2.5 h-2.5" />
-              SOON
+              CINEMA
             </div>
           ) : movie.is_streaming_live ? (
             <div className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-cyan-950/90 border border-cyan-400/80 text-cyan-300 text-[10px] font-extrabold tracking-tight shadow">

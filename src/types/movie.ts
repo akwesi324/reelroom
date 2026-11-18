@@ -16,6 +16,9 @@ export interface Movie {
   live_viewers?: number;
   is_streaming_live?: boolean;
   is_upcoming?: boolean;
+  cinema_release_date?: string;
+  distributor?: string;
+  anticipated_score?: number;
   era?: string;
   imdb_id?: string;
   certification?: string;
