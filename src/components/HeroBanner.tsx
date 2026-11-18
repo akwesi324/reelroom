@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Movie } from '@/types/movie';
-import { getImageUrl, formatRuntime } from '@/lib/tmdb';
+import { getImageUrl, formatRuntime, formatReleaseDate } from '@/lib/tmdb';
 import { Play, Info, Star, Radio, Users, Bookmark, BookmarkCheck, Calendar } from 'lucide-react';
 
 interface HeroBannerProps {
@@ -45,7 +45,7 @@ export default function HeroBanner({
             {movie.is_upcoming ? (
               <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-400 text-cyan-300 text-xs font-bold tracking-wide shadow-lg shadow-cyan-500/20">
                 <Calendar className="w-3.5 h-3.5 text-cyan-400" />
-                COMING TO THEATERS • {movie.release_date}
+                COMING TO THEATERS • {formatReleaseDate(movie.release_date)}
               </span>
             ) : movie.is_streaming_live ? (
               <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-400 text-cyan-300 text-xs font-bold tracking-wide shadow-lg shadow-cyan-500/20">

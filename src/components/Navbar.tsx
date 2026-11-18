@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Film, Radio, Search, Users, Bookmark, Sparkles, History, Calendar } from 'lucide-react';
+import { Film, Radio, Search, Users, Bookmark, Calendar, History } from 'lucide-react';
+import DiscordUserMenu, { UserStatus } from './DiscordUserMenu';
 
 interface NavbarProps {
   onSearch: (query: string) => void;
@@ -33,19 +34,23 @@ export default function Navbar({
 
   return (
     <header className="sticky top-0 z-40 w-full glass-panel border-b border-white/5 transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4">
-        {/* Brand Logo */}
-        <div className="flex items-center gap-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-3 sm:gap-4">
+        {/* Left Section: Far-Left Discord Avatar Menu + Brand Logo */}
+        <div className="flex items-center gap-3 sm:gap-6">
+          {/* Avatar on the FAR LEFT with full Discord dropdown menu */}
+          <DiscordUserMenu />
+
+          {/* Brand Logo */}
           <div
             onClick={() => setActiveTab('explore')}
             className="flex items-center gap-2.5 cursor-pointer group select-none"
           >
-            <div className="w-10 h-10 rounded-xl gradient-reel flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-400/40 transition-all">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl gradient-reel flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-400/40 transition-all shrink-0">
               <Film className="w-5 h-5 text-white" />
             </div>
-            <div>
+            <div className="hidden xs:block">
               <div className="flex items-center gap-1.5">
-                <span className="text-xl font-black tracking-wider bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-300 bg-clip-text text-transparent">
+                <span className="text-lg sm:text-xl font-black tracking-wider bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-300 bg-clip-text text-transparent">
                   REELROOM
                 </span>
                 {hasLiveParties ? (
@@ -114,7 +119,7 @@ export default function Navbar({
               </span>
             </button>
 
-            {/* Cinema Vault: Since the start of cinema */}
+            {/* Cinema History Tab: brackets removed */}
             <button
               onClick={() => setActiveTab('history')}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
@@ -124,7 +129,7 @@ export default function Navbar({
               }`}
             >
               <History className="w-4 h-4 text-amber-400" />
-              Cinema History (1927–Now)
+              Cinema History
             </button>
 
             {/* IMDb High Score */}
@@ -164,13 +169,13 @@ export default function Navbar({
           {/* Search bar */}
           <div
             className={`relative flex items-center rounded-xl bg-slate-900/80 border border-slate-700/60 px-3 py-1.5 transition-all duration-300 ${
-              isSearchExpanded ? 'w-52 sm:w-64 border-cyan-500/60 ring-2 ring-cyan-500/20' : 'w-40 sm:w-56'
+              isSearchExpanded ? 'w-52 sm:w-64 border-cyan-500/60 ring-2 ring-cyan-500/20' : 'w-36 sm:w-56'
             }`}
           >
             <Search className="w-4 h-4 text-cyan-400 mr-2 shrink-0" />
             <input
               type="text"
-              placeholder="Search by title, year, director..."
+              placeholder="Search movies, year, director..."
               value={searchValue}
               onChange={handleSearchChange}
               onFocus={() => setIsSearchExpanded(true)}
@@ -200,18 +205,6 @@ export default function Navbar({
             </span>
             <Users className="w-3.5 h-3.5 text-cyan-400" />
             <span className="font-semibold text-cyan-300">8,270</span> Online
-          </div>
-
-          {/* User Discord-like Avatar Profile */}
-          <div className="flex items-center gap-2 pl-2 border-l border-white/10">
-            <div className="relative cursor-pointer">
-              <img
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop"
-                alt="Profile"
-                className="w-9 h-9 rounded-full ring-2 ring-cyan-500/40 object-cover"
-              />
-              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-slate-900" />
-            </div>
           </div>
         </div>
       </div>

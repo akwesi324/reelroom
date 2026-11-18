@@ -8,7 +8,7 @@ import MovieCard from '@/components/MovieCard';
 import MovieDetailModal from '@/components/MovieDetailModal';
 import WatchPartyModal from '@/components/WatchPartyModal';
 import { Movie } from '@/types/movie';
-import { CURATED_MOVIES, DEMO_WATCH_ROOMS } from '@/lib/tmdb';
+import { CURATED_MOVIES, DEMO_WATCH_ROOMS, formatReleaseDate } from '@/lib/tmdb';
 import { Radio, Flame, Award, Film, Sparkles, Tv, Bookmark, Search, Users, Calendar, History, Clapperboard, Clock } from 'lucide-react';
 
 export default function Home() {
@@ -50,14 +50,15 @@ export default function Home() {
     (a, b) => new Date(a.release_date).getTime() - new Date(b.release_date).getTime()
   );
 
+  // Eras without brackets
   const eras = [
     'All',
-    'Dawn of Cinema (1920-1969)',
-    'New Hollywood & 80s (1970-1989)',
+    'Dawn of Cinema 1920–1969',
+    'New Hollywood & 80s 1970–1989',
     '1990s Renaissance',
-    'Modern Classics (2000-2019)',
-    'Contemporary (2020-Present)',
-    'Upcoming Cinema',
+    'Modern Classics 2000–2019',
+    'Contemporary 2020–Present',
+    'Upcoming Cinema 2025–2026',
   ];
 
   const eraFilteredMovies = selectedEra === 'All'
@@ -83,7 +84,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#06080f] text-slate-100 flex flex-col selection:bg-cyan-500 selection:text-black">
-      {/* Navigation Bar */}
+      {/* Navigation Bar with far-left Discord user avatar and dropdown */}
       <Navbar
         onSearch={setSearchQuery}
         activeTab={activeTab}
@@ -166,7 +167,7 @@ export default function Home() {
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="flex items-center gap-1 text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-cyan-950 border border-cyan-400 text-cyan-300">
                           <Calendar className="w-3 h-3" />
-                          {movie.release_date}
+                          {formatReleaseDate(movie.release_date)}
                         </span>
                         <span className="text-xs font-semibold text-slate-400">
                           Director: {movie.director}
@@ -218,12 +219,12 @@ export default function Home() {
             </div>
           </div>
         ) : activeTab === 'history' ? (
-          /* TAB 2: Cinema History (From the Start of Cinema to Now) */
+          /* TAB 2: Cinema History without brackets */
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-amber-400 font-extrabold text-xs uppercase tracking-wider">
                 <History className="w-4 h-4" />
-                From Metropolis (1927) to Contemporary Blockbusters
+                From Metropolis 1927 to Contemporary Blockbusters
               </div>
               <h2 className="text-3xl sm:text-4xl font-black text-white">
                 The History of Cinema Timeline
@@ -233,7 +234,7 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Era Filter Badges */}
+            {/* Era Filter Badges without brackets */}
             <div className="flex flex-wrap items-center gap-2 pt-2">
               {eras.map((era) => (
                 <button
@@ -411,9 +412,9 @@ export default function Home() {
                 />
               )}
 
-              {/* Upcoming Releases Rail */}
+              {/* Upcoming Releases Rail without brackets */}
               <MovieRow
-                title="Coming Soon • Upcoming Cinema (2025–2026)"
+                title="Coming Soon • Upcoming Cinema 2025–2026"
                 subtitle="Upcoming blockbusters, official trailers, and premiere dates"
                 icon={<Calendar className="w-6 h-6 text-cyan-400" />}
                 movies={upcomingMovies}
@@ -435,9 +436,9 @@ export default function Home() {
                 onToggleWatchlist={handleToggleWatchlist}
               />
 
-              {/* Golden Pioneers & Classics (1927-1999) */}
+              {/* Golden Pioneers & Classics without brackets */}
               <MovieRow
-                title="Cinema History Pioneers (1927–1999)"
+                title="Cinema History Pioneers 1927–1999"
                 subtitle="Groundbreaking masterpieces that shaped the art form"
                 icon={<History className="w-6 h-6 text-amber-400" />}
                 movies={classicPioneers}
@@ -447,9 +448,9 @@ export default function Home() {
                 onToggleWatchlist={handleToggleWatchlist}
               />
 
-              {/* Top Rated Masterpieces */}
+              {/* Top Rated Masterpieces without brackets */}
               <MovieRow
-                title="IMDb Hall of Fame (8.2+)"
+                title="IMDb Hall of Fame 8.2+"
                 subtitle="All-time highest rated films by verified viewers"
                 icon={<Award className="w-6 h-6 text-amber-400" />}
                 movies={topRatedMovies}
@@ -504,7 +505,7 @@ export default function Home() {
           <span>ReelRoom — Netflix UI • IMDb Intelligence • Discord Lounge • Twitch Sync</span>
         </div>
         <p>
-          Spanning the entire history of cinema from 1927 to future 2026+ releases. Powered by The Movie Database (TMDB) API.
+          Spanning the history of cinema from Metropolis 1927 to future 2026+ releases. Powered by The Movie Database TMDB API.
         </p>
       </footer>
     </div>

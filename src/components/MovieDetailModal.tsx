@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Movie } from '@/types/movie';
-import { getImageUrl, formatRuntime, DEMO_REVIEWS } from '@/lib/tmdb';
+import { getImageUrl, formatRuntime, formatReleaseDate, DEMO_REVIEWS } from '@/lib/tmdb';
 import { X, Star, Play, Users, Calendar, Clock, Film, Award, ThumbsUp, Bookmark, BookmarkCheck } from 'lucide-react';
 
 interface MovieDetailModalProps {
@@ -80,9 +80,9 @@ export default function MovieDetailModal({
                   <Clock className="w-3.5 h-3.5" />
                   {formatRuntime(movie.runtime)}
                 </span>
-                <span className="text-xs text-slate-400 flex items-center gap-1">
+                <span className="text-xs text-slate-400 flex items-center gap-1 font-medium">
                   <Calendar className="w-3.5 h-3.5" />
-                  {movie.release_date}
+                  {formatReleaseDate(movie.release_date)}
                 </span>
               </div>
 

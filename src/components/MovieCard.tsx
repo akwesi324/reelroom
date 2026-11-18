@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Movie } from '@/types/movie';
-import { getImageUrl } from '@/lib/tmdb';
+import { getImageUrl, formatReleaseDate } from '@/lib/tmdb';
 import { Star, Play, Info, Bookmark, BookmarkCheck, Calendar, Users } from 'lucide-react';
 
 interface MovieCardProps {
@@ -67,7 +67,7 @@ export default function MovieCard({
           {movie.is_upcoming && (
             <div className="flex items-center gap-1 text-[11px] text-cyan-200 font-semibold pb-1">
               <Calendar className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Premiere: {movie.release_date}</span>
+              <span>Premiere: {formatReleaseDate(movie.release_date)}</span>
             </div>
           )}
 

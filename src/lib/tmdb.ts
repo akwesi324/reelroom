@@ -15,7 +15,23 @@ export const formatRuntime = (mins?: number) => {
   return `${h}h ${m}m`;
 };
 
-// Rich curated dataset spanning the entire history of cinema from 1927 up to 2026+ upcoming releases
+export const formatReleaseDate = (dateStr: string) => {
+  if (!dateStr) return '';
+  try {
+    const [y, m, d] = dateStr.split('-');
+    if (!y || !m || !d) return dateStr;
+    const date = new Date(parseInt(y), parseInt(m) - 1, parseInt(d));
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  } catch (e) {
+    return dateStr;
+  }
+};
+
+// Rich curated dataset with verified theatrical release dates across all eras of cinema
 export const CURATED_MOVIES: Movie[] = [
   // --- CONTEMPORARY MASTERPIECES ---
   {
@@ -34,7 +50,7 @@ export const CURATED_MOVIES: Movie[] = [
     certification: 'PG-13',
     live_viewers: 3420,
     is_streaming_live: true,
-    era: 'Contemporary (2020-Present)',
+    era: 'Contemporary 2020–Present',
     trailer_url: 'https://www.youtube.com/embed/Way9Dexny3w',
     cast: [
       { id: 1190668, name: 'Timothée Chalamet', character: 'Paul Atreides' },
@@ -58,7 +74,7 @@ export const CURATED_MOVIES: Movie[] = [
     certification: 'R',
     live_viewers: 1890,
     is_streaming_live: true,
-    era: 'Contemporary (2020-Present)',
+    era: 'Contemporary 2020–Present',
     trailer_url: 'https://www.youtube.com/embed/uYPbbksJxIg',
     cast: [
       { id: 2037, name: 'Cillian Murphy', character: 'J. Robert Oppenheimer' },
@@ -82,7 +98,7 @@ export const CURATED_MOVIES: Movie[] = [
     certification: 'PG',
     live_viewers: 2750,
     is_streaming_live: true,
-    era: 'Contemporary (2020-Present)',
+    era: 'Contemporary 2020–Present',
     trailer_url: 'https://www.youtube.com/embed/cqGjhVJWtEg',
     cast: [
       { id: 587506, name: 'Shameik Moore', character: 'Miles Morales' },
@@ -96,14 +112,14 @@ export const CURATED_MOVIES: Movie[] = [
     overview: 'All unemployed, Ki-taek\'s family takes peculiar interest in the wealthy and glamorous Parks for their livelihood until they get entangled in an unexpected incident.',
     poster_path: '/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg',
     backdrop_path: '/hiKmpZMGZsrkA3cdce8a7Dpos1j.jpg',
-    release_date: '2019-11-08',
+    release_date: '2019-05-30',
     vote_average: 8.5,
     vote_count: 17800,
     runtime: 132,
     genres: ['Comedy', 'Thriller', 'Drama'],
     director: 'Bong Joon-ho',
     certification: 'R',
-    era: 'Modern Classics (2000-2019)',
+    era: 'Modern Classics 2000–2019',
     trailer_url: 'https://www.youtube.com/embed/5xH0RzeSojI',
     cast: [
       { id: 20738, name: 'Song Kang-ho', character: 'Kim Ki-taek' },
@@ -124,7 +140,7 @@ export const CURATED_MOVIES: Movie[] = [
     genres: ['Sci-Fi', 'Mystery', 'Drama'],
     director: 'Denis Villeneuve',
     certification: 'R',
-    era: 'Modern Classics (2000-2019)',
+    era: 'Modern Classics 2000–2019',
     trailer_url: 'https://www.youtube.com/embed/gCcx85zbxz4',
     cast: [
       { id: 30614, name: 'Ryan Gosling', character: 'Officer K' },
@@ -147,7 +163,7 @@ export const CURATED_MOVIES: Movie[] = [
     certification: 'PG-13',
     live_viewers: 2100,
     is_streaming_live: true,
-    era: 'Modern Classics (2000-2019)',
+    era: 'Modern Classics 2000–2019',
     trailer_url: 'https://www.youtube.com/embed/zSWdZVtXT7E',
     cast: [
       { id: 10297, name: 'Matthew McConaughey', character: 'Cooper' },
@@ -168,7 +184,7 @@ export const CURATED_MOVIES: Movie[] = [
     genres: ['Action', 'Sci-Fi', 'Adventure'],
     director: 'Christopher Nolan',
     certification: 'PG-13',
-    era: 'Modern Classics (2000-2019)',
+    era: 'Modern Classics 2000–2019',
     trailer_url: 'https://www.youtube.com/embed/YoHD9XEInc0',
     cast: [
       { id: 6193, name: 'Leonardo DiCaprio', character: 'Dom Cobb' },
@@ -189,7 +205,7 @@ export const CURATED_MOVIES: Movie[] = [
     genres: ['Drama', 'Action', 'Crime'],
     director: 'Christopher Nolan',
     certification: 'PG-13',
-    era: 'Modern Classics (2000-2019)',
+    era: 'Modern Classics 2000–2019',
     trailer_url: 'https://www.youtube.com/embed/EXeTwQWrcwY',
     cast: [
       { id: 3894, name: 'Christian Bale', character: 'Bruce Wayne / Batman' },
@@ -205,7 +221,7 @@ export const CURATED_MOVIES: Movie[] = [
     overview: 'Set in the 22nd century, The Matrix tells the story of a computer hacker who joins a group of underground insurgents fighting the vast and powerful computers who now rule the earth.',
     poster_path: '/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg',
     backdrop_path: '/7u3pxc0K1uhny2GUHGPD9xADsqC.jpg',
-    release_date: '1999-03-30',
+    release_date: '1999-03-31',
     vote_average: 8.2,
     vote_count: 25100,
     runtime: 136,
@@ -247,7 +263,7 @@ export const CURATED_MOVIES: Movie[] = [
     overview: 'A burger-loving hit man, his philosophical partner, a drug-addled gangster\'s moll and a washed-up boxer converge in four tales of violence and redemption.',
     poster_path: '/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg',
     backdrop_path: '/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg',
-    release_date: '1994-09-10',
+    release_date: '1994-10-14',
     vote_average: 8.5,
     vote_count: 27300,
     runtime: 154,
@@ -277,7 +293,7 @@ export const CURATED_MOVIES: Movie[] = [
     genres: ['Sci-Fi', 'Drama', 'Thriller'],
     director: 'Ridley Scott',
     certification: 'R',
-    era: 'New Hollywood & 80s (1970-1989)',
+    era: 'New Hollywood & 80s 1970–1989',
     trailer_url: 'https://www.youtube.com/embed/eogpIG53Cjc',
     cast: [
       { id: 3, name: 'Harrison Ford', character: 'Rick Deckard' },
@@ -291,14 +307,14 @@ export const CURATED_MOVIES: Movie[] = [
     overview: 'Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch Vito Corleone barely survives an attempt on his life, his youngest son Michael steps in to take care of the would-be killers.',
     poster_path: '/3bhkrj58Vtu7enYsRolD1fZdja1.jpg',
     backdrop_path: '/tmU7GeKVybMWFButWEGl2M4GeiP.jpg',
-    release_date: '1972-03-14',
+    release_date: '1972-03-24',
     vote_average: 8.7,
     vote_count: 20200,
     runtime: 175,
     genres: ['Drama', 'Crime'],
     director: 'Francis Ford Coppola',
     certification: 'R',
-    era: 'New Hollywood & 80s (1970-1989)',
+    era: 'New Hollywood & 80s 1970–1989',
     trailer_url: 'https://www.youtube.com/embed/UaVTIH8mujA',
     cast: [
       { id: 3084, name: 'Marlon Brando', character: 'Don Vito Corleone' },
@@ -321,7 +337,7 @@ export const CURATED_MOVIES: Movie[] = [
     genres: ['Sci-Fi', 'Mystery', 'Adventure'],
     director: 'Stanley Kubrick',
     certification: 'G',
-    era: 'Dawn of Cinema (1920-1969)',
+    era: 'Dawn of Cinema 1920–1969',
     trailer_url: 'https://www.youtube.com/embed/oR_e9y-bka0',
     cast: [
       { id: 247, name: 'Keir Dullea', character: 'Dr. Dave Bowman' },
@@ -342,7 +358,7 @@ export const CURATED_MOVIES: Movie[] = [
     genres: ['Drama'],
     director: 'Sidney Lumet',
     certification: 'Not Rated',
-    era: 'Dawn of Cinema (1920-1969)',
+    era: 'Dawn of Cinema 1920–1969',
     trailer_url: 'https://www.youtube.com/embed/TEN-2uTi2c0',
     cast: [
       { id: 4958, name: 'Henry Fonda', character: 'Juror 8' },
@@ -363,7 +379,7 @@ export const CURATED_MOVIES: Movie[] = [
     genres: ['Drama', 'Romance', 'War'],
     director: 'Michael Curtiz',
     certification: 'PG',
-    era: 'Dawn of Cinema (1920-1969)',
+    era: 'Dawn of Cinema 1920–1969',
     trailer_url: 'https://www.youtube.com/embed/BKbK9V0aCj4',
     cast: [
       { id: 379, name: 'Humphrey Bogart', character: 'Rick Blaine' },
@@ -384,7 +400,7 @@ export const CURATED_MOVIES: Movie[] = [
     genres: ['Sci-Fi', 'Drama'],
     director: 'Fritz Lang',
     certification: 'Not Rated',
-    era: 'Dawn of Cinema (1920-1969)',
+    era: 'Dawn of Cinema 1920–1969',
     trailer_url: 'https://www.youtube.com/embed/gdtZv36auQU',
     cast: [
       { id: 182, name: 'Alfred Abel', character: 'Joh Fredersen' },
@@ -393,6 +409,29 @@ export const CURATED_MOVIES: Movie[] = [
   },
 
   // --- UPCOMING MOVIES (NEW MOVIES COMING OUT) ---
+  {
+    id: 575264,
+    title: 'Mission: Impossible - The Final Reckoning',
+    tagline: 'Our lives are the sum of our choices.',
+    overview: 'Ethan Hunt and his IMF team embark on their most dangerous mission yet: tracking down the terrifying AI entity known as the Entity before it falls into the wrong hands.',
+    poster_path: '/v0LpYv39P1wLkm4eG8m1C2d3e.jpg',
+    backdrop_path: '/628Dep6AxEtDxjZoGP78TsOxYbK.jpg',
+    release_date: '2025-05-23',
+    vote_average: 8.4,
+    vote_count: 820,
+    runtime: 165,
+    genres: ['Action', 'Thriller', 'Adventure'],
+    director: 'Christopher McQuarrie',
+    certification: 'PG-13',
+    is_upcoming: true,
+    era: 'Upcoming Cinema 2025–2026',
+    trailer_url: 'https://www.youtube.com/embed/NOhDy6ZzsA0',
+    cast: [
+      { id: 500, name: 'Tom Cruise', character: 'Ethan Hunt' },
+      { id: 52886, name: 'Hayley Atwell', character: 'Grace' },
+      { id: 55638, name: 'Simon Pegg', character: 'Benji Dunn' }
+    ]
+  },
   {
     id: 1061474,
     title: 'Superman',
@@ -408,7 +447,7 @@ export const CURATED_MOVIES: Movie[] = [
     director: 'James Gunn',
     certification: 'PG-13',
     is_upcoming: true,
-    era: 'Upcoming Cinema',
+    era: 'Upcoming Cinema 2025–2026',
     trailer_url: 'https://www.youtube.com/embed/uhUht6vAsMY',
     cast: [
       { id: 1392137, name: 'David Corenswet', character: 'Clark Kent / Superman' },
@@ -431,7 +470,7 @@ export const CURATED_MOVIES: Movie[] = [
     director: 'James Cameron',
     certification: 'PG-13',
     is_upcoming: true,
-    era: 'Upcoming Cinema',
+    era: 'Upcoming Cinema 2025–2026',
     trailer_url: 'https://www.youtube.com/embed/d9MyW72ELq0',
     cast: [
       { id: 65731, name: 'Sam Worthington', character: 'Jake Sully' },
@@ -454,35 +493,12 @@ export const CURATED_MOVIES: Movie[] = [
     director: 'Matt Reeves',
     certification: 'PG-13',
     is_upcoming: true,
-    era: 'Upcoming Cinema',
+    era: 'Upcoming Cinema 2025–2026',
     trailer_url: 'https://www.youtube.com/embed/mqqft2x_Aa4',
     cast: [
       { id: 11288, name: 'Robert Pattinson', character: 'Bruce Wayne / The Batman' },
       { id: 134774, name: 'Andy Serkis', character: 'Alfred Pennyworth' },
       { id: 1243, name: 'Colin Farrell', character: 'Oswald Cobblepot / The Penguin' }
-    ]
-  },
-  {
-    id: 575264,
-    title: 'Mission: Impossible - The Final Reckoning',
-    tagline: 'Our lives are the sum of our choices.',
-    overview: 'Ethan Hunt and his IMF team embark on their most dangerous mission yet: tracking down the terrifying AI entity known as the Entity before it falls into the wrong hands.',
-    poster_path: '/v0LpYv39P1wLkm4eG8m1C2d3e.jpg',
-    backdrop_path: '/628Dep6AxEtDxjZoGP78TsOxYbK.jpg',
-    release_date: '2025-05-23',
-    vote_average: 8.4,
-    vote_count: 820,
-    runtime: 165,
-    genres: ['Action', 'Thriller', 'Adventure'],
-    director: 'Christopher McQuarrie',
-    certification: 'PG-13',
-    is_upcoming: true,
-    era: 'Upcoming Cinema',
-    trailer_url: 'https://www.youtube.com/embed/NOhDy6ZzsA0',
-    cast: [
-      { id: 500, name: 'Tom Cruise', character: 'Ethan Hunt' },
-      { id: 52886, name: 'Hayley Atwell', character: 'Grace' },
-      { id: 55638, name: 'Simon Pegg', character: 'Benji Dunn' }
     ]
   }
 ];
