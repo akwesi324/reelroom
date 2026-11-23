@@ -3,9 +3,13 @@
 :root {
   --background: #06080f;
   --foreground: #f1f5f9;
-  --primary-cyan: #06b6d4;
-  --primary-deep: #083344;
-  --glow-cyan: rgba(6, 182, 212, 0.35);
+  /* "Blood rush": blood red -> hot pink, with a splash of white */
+  --blood: #8a0303;
+  --crimson: #c1121f;
+  --hot-pink: #ff1f8f;
+  --primary-accent: #ff1f8f;
+  --primary-deep: #3b0008;
+  --glow-accent: rgba(255, 31, 143, 0.35);
 }
 
 body {
@@ -27,18 +31,30 @@ body {
   background: rgba(11, 17, 30, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(6, 182, 212, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 20px 0 rgba(6, 182, 212, 0.15);
+  border: 1px solid rgba(255, 31, 143, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 20px 0 rgba(193, 18, 31, 0.2);
 }
 
 /* Deepened vibrant gradient for buttons and active highlights */
+/* The white "splotch" is a soft radial highlight layered over the red-to-pink sweep. */
 .gradient-reel {
-  background: linear-gradient(135deg, #0284c7 0%, #0891b2 50%, #4338ca 100%);
+  background:
+    radial-gradient(circle at 80% 18%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.18) 16%, rgba(255, 255, 255, 0) 34%),
+    linear-gradient(135deg, #8a0303 0%, #c1121f 38%, #ff1f8f 100%);
 }
 
 .gradient-reel-hover:hover {
-  background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #4f46e5 100%);
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+  background:
+    radial-gradient(circle at 78% 20%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.22) 18%, rgba(255, 255, 255, 0) 38%),
+    linear-gradient(135deg, #a4060f 0%, #e0153a 40%, #ff4fa8 100%);
+  box-shadow: 0 0 22px rgba(255, 31, 143, 0.45);
+}
+
+/* Profile banner: deep blood red into hot pink, white glint in the corner. */
+.gradient-banner {
+  background:
+    radial-gradient(circle at 88% 15%, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 30%),
+    linear-gradient(120deg, #3b0008 0%, #8a0303 45%, #ff1f8f 100%);
 }
 
 .gradient-card-dark {

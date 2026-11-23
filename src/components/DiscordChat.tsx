@@ -16,7 +16,7 @@ const INITIAL_MESSAGES: ChatMessage[] = [
     userName: 'CinemaGodfather',
     userAvatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop',
     userBadge: 'Host',
-    badgeColor: 'bg-cyan-500 text-black',
+    badgeColor: 'bg-pink-500 text-black',
     content: 'Welcome everyone to the ReelRoom live sync! Grab your popcorn 🍿 and sound off if audio is crisp!',
     timestamp: '12:42 PM',
     reactions: { '🍿': 14, '🔥': 8 }
@@ -77,7 +77,7 @@ export default function DiscordChat({ channelName, movieTitle }: DiscordChatProp
       userName: 'You (Cinephile)',
       userAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop',
       userBadge: 'Fanatic',
-      badgeColor: 'bg-cyan-400 text-black',
+      badgeColor: 'bg-pink-400 text-black',
       content: inputText.trim(),
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       reactions: {}
@@ -110,13 +110,13 @@ export default function DiscordChat({ channelName, movieTitle }: DiscordChatProp
       {/* Discord Channel Header */}
       <div className="h-14 px-4 border-b border-white/5 flex items-center justify-between shrink-0 bg-[#090f1f]">
         <div className="flex items-center gap-2">
-          <Hash className="w-5 h-5 text-cyan-400" />
+          <Hash className="w-5 h-5 text-pink-400" />
           <div>
             <span className="text-sm font-bold text-white tracking-wide">
               {channelName || 'general-watchparty'}
             </span>
             <span className="hidden sm:inline-block text-xs text-slate-400 ml-2">
-              | Live chat for <span className="text-cyan-300 font-semibold">{movieTitle}</span>
+              | Live chat for <span className="text-pink-300 font-semibold">{movieTitle}</span>
             </span>
           </div>
         </div>
@@ -125,12 +125,12 @@ export default function DiscordChat({ channelName, movieTitle }: DiscordChatProp
           onClick={() => setShowUsers(!showUsers)}
           className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all ${
             showUsers
-              ? 'bg-cyan-950 border-cyan-500/60 text-cyan-300'
+              ? 'bg-red-950 border-pink-500/60 text-pink-300'
               : 'bg-slate-900 border-slate-700 text-slate-300 hover:text-white'
           }`}
           title="Toggle online members"
         >
-          <Users className="w-3.5 h-3.5 text-cyan-400" />
+          <Users className="w-3.5 h-3.5 text-pink-400" />
           <span>{ONLINE_USERS.length}</span>
         </button>
       </div>
@@ -141,9 +141,9 @@ export default function DiscordChat({ channelName, movieTitle }: DiscordChatProp
         <div className="flex-1 flex flex-col justify-between overflow-hidden">
           <div className="flex-1 overflow-y-auto chat-scroll p-4 space-y-4">
             {/* Welcome banner */}
-            <div className="p-3 rounded-xl bg-cyan-950/40 border border-cyan-500/20 text-xs text-slate-300 space-y-1">
-              <div className="flex items-center gap-1.5 text-cyan-300 font-bold">
-                <Sparkles className="w-4 h-4 text-cyan-400" />
+            <div className="p-3 rounded-xl bg-red-950/40 border border-pink-500/20 text-xs text-slate-300 space-y-1">
+              <div className="flex items-center gap-1.5 text-pink-300 font-bold">
+                <Sparkles className="w-4 h-4 text-pink-400" />
                 Discord-Powered Movie Lounge
               </div>
               <p>Be civil, avoid major unannounced spoilers, and enjoy synchronized streaming!</p>
@@ -155,7 +155,7 @@ export default function DiscordChat({ channelName, movieTitle }: DiscordChatProp
                 <img
                   src={msg.userAvatar}
                   alt={msg.userName}
-                  className="w-9 h-9 rounded-full ring-1 ring-cyan-500/30 object-cover shrink-0"
+                  className="w-9 h-9 rounded-full ring-1 ring-pink-500/30 object-cover shrink-0"
                 />
                 <div className="flex-1 space-y-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
@@ -163,7 +163,7 @@ export default function DiscordChat({ channelName, movieTitle }: DiscordChatProp
                       {msg.userName}
                     </span>
                     {msg.userBadge && (
-                      <span className={`text-[10px] font-extrabold uppercase px-1.5 py-0.2 rounded ${msg.badgeColor || 'bg-cyan-500 text-black'}`}>
+                      <span className={`text-[10px] font-extrabold uppercase px-1.5 py-0.2 rounded ${msg.badgeColor || 'bg-pink-500 text-black'}`}>
                         {msg.userBadge}
                       </span>
                     )}
@@ -182,10 +182,10 @@ export default function DiscordChat({ channelName, movieTitle }: DiscordChatProp
                       <button
                         key={emoji}
                         onClick={() => handleReact(msg.id, emoji)}
-                        className="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-slate-900 border border-slate-700/60 hover:border-cyan-500/50 text-xs font-semibold text-slate-200 hover:scale-105 active:scale-95 transition-all"
+                        className="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-slate-900 border border-slate-700/60 hover:border-pink-500/50 text-xs font-semibold text-slate-200 hover:scale-105 active:scale-95 transition-all"
                       >
                         <span>{emoji}</span>
-                        <span className="text-[10px] text-cyan-300">{count}</span>
+                        <span className="text-[10px] text-pink-300">{count}</span>
                       </button>
                     ))}
 
@@ -210,7 +210,7 @@ export default function DiscordChat({ channelName, movieTitle }: DiscordChatProp
 
           {/* Chat input box */}
           <div className="p-3 bg-[#0a0f21] border-t border-white/5">
-            <form onSubmit={handleSendMessage} className="flex items-center gap-2 rounded-xl bg-slate-900/90 border border-slate-700/80 focus-within:border-cyan-500 px-3 py-2">
+            <form onSubmit={handleSendMessage} className="flex items-center gap-2 rounded-xl bg-slate-900/90 border border-slate-700/80 focus-within:border-pink-500 px-3 py-2">
               <input
                 type="text"
                 placeholder={`Message #${channelName || 'watchparty'}...`}
@@ -221,7 +221,7 @@ export default function DiscordChat({ channelName, movieTitle }: DiscordChatProp
               <button
                 type="button"
                 onClick={() => setInputText((prev) => prev + ' 🍿 ')}
-                className="text-slate-400 hover:text-cyan-400 transition-colors"
+                className="text-slate-400 hover:text-pink-400 transition-colors"
                 title="Add Popcorn reaction"
               >
                 <Popcorn className="w-4 h-4" />
@@ -260,7 +260,7 @@ export default function DiscordChat({ channelName, movieTitle }: DiscordChatProp
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-xs font-semibold text-slate-200 truncate">{user.name}</p>
-                    <p className="text-[10px] text-cyan-400 truncate">{user.role}</p>
+                    <p className="text-[10px] text-pink-400 truncate">{user.role}</p>
                   </div>
                 </div>
               ))}

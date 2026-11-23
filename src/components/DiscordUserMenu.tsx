@@ -83,14 +83,14 @@ export default function DiscordUserMenu({ onStatusChange }: DiscordUserMenuProps
       {/* Discord Avatar Button on Far Left */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="group relative flex items-center gap-2 p-1 rounded-xl hover:bg-slate-800/80 border border-white/5 hover:border-cyan-500/30 transition-all focus:outline-none"
+        className="group relative flex items-center gap-2 p-1 rounded-xl hover:bg-slate-800/80 border border-white/5 hover:border-pink-500/30 transition-all focus:outline-none"
         title="Discord Profile & Settings"
       >
         <div className="relative">
           <img
             src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop"
             alt="Discord User Avatar"
-            className="w-10 h-10 rounded-full object-cover ring-2 ring-cyan-500/50 group-hover:ring-cyan-400 transition-all"
+            className="w-10 h-10 rounded-full object-cover ring-2 ring-pink-500/50 group-hover:ring-pink-400 transition-all"
           />
           {/* Status Indicator Dot */}
           <span
@@ -105,9 +105,9 @@ export default function DiscordUserMenu({ onStatusChange }: DiscordUserMenuProps
       {isOpen && (
         <div className="absolute left-0 mt-2 w-80 sm:w-88 rounded-2xl bg-[#111214] border border-[#2b2d31] shadow-2xl text-slate-200 overflow-hidden z-50 animate-fade-in font-sans">
           {/* Discord Banner & Profile Header */}
-          <div className="relative h-20 bg-gradient-to-r from-cyan-900 via-indigo-900 to-purple-950 p-3 flex items-start justify-end">
+          <div className="relative h-20 gradient-banner p-3 flex items-start justify-end">
             {/* VIP & Nitro Badges */}
-            <div className="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10 text-[10px] font-bold text-cyan-300">
+            <div className="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10 text-[10px] font-bold text-pink-300">
               <Crown className="w-3 h-3 text-amber-400" />
               <span>CINEPHILE VIP</span>
             </div>
@@ -135,7 +135,7 @@ export default function DiscordUserMenu({ onStatusChange }: DiscordUserMenuProps
                 <h3 className="text-base font-bold text-white tracking-wide">Akwesi</h3>
                 <span className="text-xs text-slate-400 font-medium">#2026</span>
               </div>
-              <p className="text-xs text-cyan-400 font-semibold flex items-center gap-1">
+              <p className="text-xs text-pink-400 font-semibold flex items-center gap-1">
                 <Film className="w-3 h-3" />
                 Verified Watchroom Host
               </p>
@@ -155,7 +155,7 @@ export default function DiscordUserMenu({ onStatusChange }: DiscordUserMenuProps
                   />
                   <button
                     onClick={() => setIsEditingCustomStatus(false)}
-                    className="text-[11px] font-bold text-cyan-400 hover:text-cyan-300"
+                    className="text-[11px] font-bold text-pink-400 hover:text-pink-300"
                   >
                     Save
                   </button>
@@ -166,7 +166,7 @@ export default function DiscordUserMenu({ onStatusChange }: DiscordUserMenuProps
                   className="flex items-center justify-between cursor-pointer group"
                 >
                   <span className="text-slate-300 truncate">{customStatus || 'Set a custom status...'}</span>
-                  <Smile className="w-3.5 h-3.5 text-slate-500 group-hover:text-cyan-400 shrink-0" />
+                  <Smile className="w-3.5 h-3.5 text-slate-500 group-hover:text-pink-400 shrink-0" />
                 </div>
               )}
             </div>
@@ -183,13 +183,13 @@ export default function DiscordUserMenu({ onStatusChange }: DiscordUserMenuProps
                     onClick={() => handleStatusSelect(s)}
                     className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                       status === s
-                        ? 'bg-[#2b2d31] text-white border border-cyan-500/40'
+                        ? 'bg-[#2b2d31] text-white border border-pink-500/40'
                         : 'hover:bg-[#1e1f22] text-slate-300'
                     }`}
                   >
                     <span className={`w-2.5 h-2.5 rounded-full ${getStatusColor(s)}`} />
                     <span className="truncate">{getStatusText(s)}</span>
-                    {status === s && <Check className="w-3 h-3 text-cyan-400 ml-auto" />}
+                    {status === s && <Check className="w-3 h-3 text-pink-400 ml-auto" />}
                   </button>
                 ))}
               </div>
@@ -223,7 +223,7 @@ export default function DiscordUserMenu({ onStatusChange }: DiscordUserMenuProps
                 onClick={() => setStreamerMode(!streamerMode)}
                 className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all ${
                   streamerMode
-                    ? 'bg-purple-950 border-purple-500 text-purple-300'
+                    ? 'bg-red-950 border-pink-500 text-pink-300'
                     : 'bg-[#1e1f22] border-[#2b2d31] text-slate-400 hover:text-white'
                 }`}
                 title="Toggle Discord Streamer Mode"
@@ -240,7 +240,7 @@ export default function DiscordUserMenu({ onStatusChange }: DiscordUserMenuProps
                 className="w-full flex items-center justify-between p-2 rounded-lg text-xs font-medium hover:bg-[#1e1f22] text-slate-300 hover:text-white transition-colors"
               >
                 <div className="flex items-center gap-2.5">
-                  <User className="w-4 h-4 text-cyan-400" />
+                  <User className="w-4 h-4 text-pink-400" />
                   <span>Edit Cinephile Profile</span>
                 </div>
                 <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
@@ -251,7 +251,7 @@ export default function DiscordUserMenu({ onStatusChange }: DiscordUserMenuProps
                 className="w-full flex items-center justify-between p-2 rounded-lg text-xs font-medium hover:bg-[#1e1f22] text-slate-300 hover:text-white transition-colors"
               >
                 <div className="flex items-center gap-2.5">
-                  <Volume2 className="w-4 h-4 text-indigo-400" />
+                  <Volume2 className="w-4 h-4 text-rose-400" />
                   <span>Voice & Theater Sync</span>
                 </div>
                 <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
@@ -273,10 +273,10 @@ export default function DiscordUserMenu({ onStatusChange }: DiscordUserMenuProps
                 className="w-full flex items-center justify-between p-2 rounded-lg text-xs font-medium hover:bg-[#1e1f22] text-slate-300 hover:text-white transition-colors"
               >
                 <div className="flex items-center gap-2.5">
-                  <Sparkles className="w-4 h-4 text-purple-400" />
+                  <Sparkles className="w-4 h-4 text-rose-400" />
                   <span>ReelRoom Nitro VIP</span>
                 </div>
-                <span className="text-[10px] font-bold px-1.5 py-0.2 rounded bg-purple-500 text-white">PRO</span>
+                <span className="text-[10px] font-bold px-1.5 py-0.2 rounded gradient-reel text-white">PRO</span>
               </button>
 
               <button

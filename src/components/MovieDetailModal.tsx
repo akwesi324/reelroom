@@ -24,7 +24,7 @@ export default function MovieDetailModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-2 sm:p-6 overflow-y-auto animate-fade-in">
-      <div className="relative w-full max-w-4xl bg-[#090e1a] border border-cyan-500/30 rounded-2xl shadow-2xl overflow-hidden my-8">
+      <div className="relative w-full max-w-4xl bg-[#090e1a] border border-pink-500/30 rounded-2xl shadow-2xl overflow-hidden my-8">
         {/* Backdrop Banner with Close Button */}
         <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-slate-950">
           <img
@@ -46,7 +46,7 @@ export default function MovieDetailModal({
           {movie.trailer_url && (
             <button
               onClick={() => onJoinWatchParty(movie)}
-              className="absolute bottom-6 right-6 flex items-center gap-2 px-4 py-2 rounded-xl gradient-reel text-white text-xs font-bold shadow-lg shadow-cyan-500/30 hover:scale-105 active:scale-95 transition-all"
+              className="absolute bottom-6 right-6 flex items-center gap-2 px-4 py-2 rounded-xl gradient-reel text-white text-xs font-bold shadow-lg shadow-pink-500/30 hover:scale-105 active:scale-95 transition-all"
             >
               <Play className="w-4 h-4 fill-white" />
               Watch Live Stream
@@ -58,7 +58,7 @@ export default function MovieDetailModal({
         <div className="p-6 sm:p-8 space-y-6 -mt-20 relative z-10">
           {/* Header Row: Poster + Key Stats */}
           <div className="flex flex-col sm:flex-row gap-6 items-start">
-            <div className="w-32 sm:w-44 aspect-[2/3] rounded-xl overflow-hidden shadow-2xl ring-2 ring-cyan-500/40 shrink-0 bg-slate-900">
+            <div className="w-32 sm:w-44 aspect-[2/3] rounded-xl overflow-hidden shadow-2xl ring-2 ring-pink-500/40 shrink-0 bg-slate-900">
               <img
                 src={getImageUrl(movie.poster_path, 'w500')}
                 alt={movie.title}
@@ -91,7 +91,7 @@ export default function MovieDetailModal({
               </h1>
 
               {movie.tagline && (
-                <p className="text-sm italic text-cyan-300 font-medium">
+                <p className="text-sm italic text-pink-300 font-medium">
                   &ldquo;{movie.tagline}&rdquo;
                 </p>
               )}
@@ -100,7 +100,7 @@ export default function MovieDetailModal({
               <div className="flex flex-wrap gap-3 pt-2">
                 <button
                   onClick={() => onJoinWatchParty(movie)}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl gradient-reel text-white text-xs font-bold shadow-md shadow-cyan-500/20 hover:brightness-110 active:scale-95 transition-all"
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl gradient-reel text-white text-xs font-bold shadow-md shadow-pink-500/20 hover:brightness-110 active:scale-95 transition-all"
                 >
                   <Play className="w-4 h-4 fill-white" />
                   Join Live Watchroom
@@ -110,13 +110,13 @@ export default function MovieDetailModal({
                   onClick={() => onToggleWatchlist(movie)}
                   className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl border text-xs font-bold transition-all ${
                     isWatchlisted
-                      ? 'bg-cyan-950 border-cyan-400 text-cyan-300'
+                      ? 'bg-red-950 border-pink-400 text-pink-300'
                       : 'bg-slate-800 border-slate-700 text-slate-200 hover:text-white hover:bg-slate-700'
                   }`}
                 >
                   {isWatchlisted ? (
                     <>
-                      <BookmarkCheck className="w-4 h-4 text-cyan-400" />
+                      <BookmarkCheck className="w-4 h-4 text-pink-400" />
                       In Watchlist
                     </>
                   ) : (
@@ -143,7 +143,7 @@ export default function MovieDetailModal({
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`pb-3 text-xs sm:text-sm font-bold tracking-wide transition-all border-b-2 -mb-[2px] ${
                   activeTab === tab.id
-                    ? 'border-cyan-400 text-cyan-300'
+                    ? 'border-pink-400 text-pink-300'
                     : 'border-transparent text-slate-400 hover:text-slate-200'
                 }`}
               >
@@ -164,7 +164,7 @@ export default function MovieDetailModal({
                   </div>
                   <div>
                     <span className="text-xs uppercase font-bold text-slate-500 block">Genres</span>
-                    <span className="text-sm font-semibold text-cyan-300">{movie.genres.join(', ')}</span>
+                    <span className="text-sm font-semibold text-pink-300">{movie.genres.join(', ')}</span>
                   </div>
                   <div>
                     <span className="text-xs uppercase font-bold text-slate-500 block">TMDB / IMDb ID</span>
@@ -184,7 +184,7 @@ export default function MovieDetailModal({
                   movie.cast.map((actor) => (
                     <div key={actor.id} className="p-3 rounded-xl bg-slate-900/60 border border-white/5 space-y-1">
                       <p className="text-xs font-bold text-white truncate">{actor.name}</p>
-                      <p className="text-[11px] text-cyan-400 truncate">{actor.character}</p>
+                      <p className="text-[11px] text-pink-400 truncate">{actor.character}</p>
                     </div>
                   ))
                 ) : (
@@ -212,7 +212,7 @@ export default function MovieDetailModal({
                     </div>
                     <p className="text-xs text-slate-300 leading-relaxed">{rev.content}</p>
                     <div className="flex items-center gap-1.5 text-[11px] text-slate-400 pt-1">
-                      <ThumbsUp className="w-3 h-3 text-cyan-400" />
+                      <ThumbsUp className="w-3 h-3 text-pink-400" />
                       <span>{rev.likes} cinephiles found this helpful</span>
                     </div>
                   </div>

@@ -83,7 +83,7 @@ export default function Home() {
   const watchlistedMovies = movies.filter((m) => watchlist.includes(m.id));
 
   return (
-    <div className="min-h-screen bg-[#06080f] text-slate-100 flex flex-col selection:bg-cyan-500 selection:text-black">
+    <div className="min-h-screen bg-[#06080f] text-slate-100 flex flex-col selection:bg-pink-500 selection:text-black">
       {/* Navigation Bar with far-left Discord user avatar and dropdown */}
       <Navbar
         onSearch={setSearchQuery}
@@ -101,7 +101,7 @@ export default function Home() {
         {searchQuery ? (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
             <div className="flex items-center gap-3">
-              <Search className="w-5 h-5 text-cyan-400" />
+              <Search className="w-5 h-5 text-pink-400" />
               <h2 className="text-xl sm:text-2xl font-black text-white">
                 Search Results for &ldquo;{searchQuery}&rdquo;
                 <span className="text-sm font-semibold text-slate-400 ml-2">({filteredMovies.length} found)</span>
@@ -132,7 +132,7 @@ export default function Home() {
           /* TAB 1: Upcoming Movies (New Movies Coming Out) */
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
             <div className="space-y-2">
-              <div className="flex items-center gap-2 text-cyan-400 font-extrabold text-xs uppercase tracking-wider">
+              <div className="flex items-center gap-2 text-pink-400 font-extrabold text-xs uppercase tracking-wider">
                 <Calendar className="w-4 h-4" />
                 Next Era of Cinema • 2025 & Beyond
               </div>
@@ -149,7 +149,7 @@ export default function Home() {
               {upcomingMovies.map((movie) => (
                 <div
                   key={movie.id}
-                  className="rounded-2xl bg-slate-900/80 border border-cyan-500/30 p-5 flex flex-col sm:flex-row gap-5 hover:border-cyan-400 transition-all shadow-xl hover:shadow-cyan-500/10"
+                  className="rounded-2xl bg-slate-900/80 border border-pink-500/30 p-5 flex flex-col sm:flex-row gap-5 hover:border-pink-400 transition-all shadow-xl hover:shadow-pink-500/10"
                 >
                   <div
                     onClick={() => setSelectedMovieForDetails(movie)}
@@ -165,7 +165,7 @@ export default function Home() {
                   <div className="flex-1 flex flex-col justify-between space-y-3">
                     <div className="space-y-1.5">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="flex items-center gap-1 text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-cyan-950 border border-cyan-400 text-cyan-300">
+                        <span className="flex items-center gap-1 text-[11px] font-extrabold uppercase px-2 py-0.5 rounded bg-red-950 border border-pink-400 text-pink-300">
                           <Calendar className="w-3 h-3" />
                           {formatReleaseDate(movie.release_date)}
                         </span>
@@ -176,13 +176,13 @@ export default function Home() {
 
                       <h3
                         onClick={() => setSelectedMovieForDetails(movie)}
-                        className="text-xl font-bold text-white hover:text-cyan-300 transition-colors cursor-pointer"
+                        className="text-xl font-bold text-white hover:text-pink-300 transition-colors cursor-pointer"
                       >
                         {movie.title}
                       </h3>
 
                       {movie.tagline && (
-                        <p className="text-xs italic text-cyan-300/80">
+                        <p className="text-xs italic text-pink-300/80">
                           &ldquo;{movie.tagline}&rdquo;
                         </p>
                       )}
@@ -195,7 +195,7 @@ export default function Home() {
                     <div className="flex items-center gap-3 pt-2">
                       <button
                         onClick={() => setSelectedMovieForWatchParty(movie)}
-                        className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl gradient-reel text-white text-xs font-bold shadow-md shadow-cyan-500/20 hover:brightness-110 active:scale-95 transition-all"
+                        className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl gradient-reel text-white text-xs font-bold shadow-md shadow-pink-500/20 hover:brightness-110 active:scale-95 transition-all"
                       >
                         <Clapperboard className="w-4 h-4" />
                         Watch Trailer
@@ -205,7 +205,7 @@ export default function Home() {
                         onClick={() => handleToggleWatchlist(movie)}
                         className={`p-2.5 rounded-xl border text-xs font-bold transition-all ${
                           watchlist.includes(movie.id)
-                            ? 'bg-cyan-950 border-cyan-400 text-cyan-300'
+                            ? 'bg-red-950 border-pink-400 text-pink-300'
                             : 'bg-slate-800 border-slate-700 text-slate-300 hover:text-white'
                         }`}
                         title="Add to upcoming premiere reminder"
@@ -242,7 +242,7 @@ export default function Home() {
                   onClick={() => setSelectedEra(era)}
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                     selectedEra === era
-                      ? 'gradient-reel text-white shadow-md shadow-cyan-500/20'
+                      ? 'gradient-reel text-white shadow-md shadow-pink-500/20'
                       : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
                   }`}
                 >
@@ -269,7 +269,7 @@ export default function Home() {
           /* Watchlist Tab */
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
             <div className="flex items-center gap-3">
-              <Bookmark className="w-6 h-6 text-cyan-400" />
+              <Bookmark className="w-6 h-6 text-pink-400" />
               <h2 className="text-2xl sm:text-3xl font-black text-white">
                 Your Cinephile Watchlist
                 <span className="text-sm font-semibold text-slate-400 ml-2">({watchlistedMovies.length} saved)</span>
@@ -311,8 +311,8 @@ export default function Home() {
           /* Watch Parties / Live stage overview */
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
             <div className="space-y-1">
-              <div className="flex items-center gap-2 text-cyan-400 font-extrabold text-sm uppercase tracking-wider">
-                <Radio className={`w-4 h-4 ${hasLiveParties ? 'animate-pulse text-cyan-400' : 'text-slate-400'}`} />
+              <div className="flex items-center gap-2 text-pink-400 font-extrabold text-sm uppercase tracking-wider">
+                <Radio className={`w-4 h-4 ${hasLiveParties ? 'animate-pulse text-pink-400' : 'text-slate-400'}`} />
                 {hasLiveParties ? 'Twitch-Style Live Cinephile Streams' : 'Watchparty Lounges'}
               </div>
               <h2 className="text-3xl sm:text-4xl font-black text-white">
@@ -331,7 +331,7 @@ export default function Home() {
                     <div
                       key={room.id}
                       onClick={() => setSelectedMovieForWatchParty(matchedMovie)}
-                      className="group relative rounded-2xl overflow-hidden bg-slate-900 border border-cyan-500/20 hover:border-cyan-400/80 transition-all cursor-pointer shadow-xl hover:shadow-cyan-500/20"
+                      className="group relative rounded-2xl overflow-hidden bg-slate-900 border border-pink-500/20 hover:border-pink-400/80 transition-all cursor-pointer shadow-xl hover:shadow-pink-500/20"
                     >
                       <div className="relative aspect-video w-full overflow-hidden">
                         <img
@@ -340,18 +340,18 @@ export default function Home() {
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
-                        <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-950/90 border border-cyan-400 text-cyan-300 text-xs font-black">
-                          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+                        <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-950/90 border border-pink-400 text-pink-300 text-xs font-black">
+                          <span className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-ping" />
                           LIVE STREAM
                         </div>
                         <div className="absolute top-3 right-3 flex items-center gap-1 px-2 py-0.5 rounded-lg bg-black/75 text-xs text-slate-200 font-bold backdrop-blur-sm">
-                          <Users className="w-3.5 h-3.5 text-cyan-400" />
+                          <Users className="w-3.5 h-3.5 text-pink-400" />
                           {room.viewersCount.toLocaleString()}
                         </div>
                       </div>
 
                       <div className="p-4 space-y-2">
-                        <h3 className="text-base font-bold text-white group-hover:text-cyan-300 transition-colors">
+                        <h3 className="text-base font-bold text-white group-hover:text-pink-300 transition-colors">
                           {room.movieTitle}
                         </h3>
                         <div className="flex items-center justify-between text-xs text-slate-400 pt-1">
@@ -359,7 +359,7 @@ export default function Home() {
                             <img src={room.hostAvatar} alt={room.hostName} className="w-5 h-5 rounded-full object-cover" />
                             <span className="font-semibold text-slate-300">Host: {room.hostName}</span>
                           </div>
-                          <span className="font-mono text-cyan-400">{room.channel}</span>
+                          <span className="font-mono text-pink-400">{room.channel}</span>
                         </div>
                       </div>
                     </div>
@@ -416,7 +416,7 @@ export default function Home() {
               <MovieRow
                 title="Coming Soon • Upcoming Cinema 2025–2026"
                 subtitle="Upcoming blockbusters, official trailers, and premiere dates"
-                icon={<Calendar className="w-6 h-6 text-cyan-400" />}
+                icon={<Calendar className="w-6 h-6 text-pink-400" />}
                 movies={upcomingMovies}
                 onOpenDetails={setSelectedMovieForDetails}
                 onJoinWatchParty={setSelectedMovieForWatchParty}
@@ -501,7 +501,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-white/5 py-10 px-4 text-center text-xs text-slate-500 space-y-2">
         <div className="flex items-center justify-center gap-2 text-slate-400 font-semibold">
-          <Film className="w-4 h-4 text-cyan-400" />
+          <Film className="w-4 h-4 text-pink-400" />
           <span>ReelRoom — Netflix UI • IMDb Intelligence • Discord Lounge • Twitch Sync</span>
         </div>
         <p>

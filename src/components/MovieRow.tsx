@@ -46,7 +46,7 @@ export default function MovieRow({
       {/* Row Header */}
       <div className="flex items-end justify-between mb-3.5">
         <div className="flex items-center gap-2.5">
-          {icon && <div className="text-cyan-400">{icon}</div>}
+          {icon && <div className="text-pink-400">{icon}</div>}
           <div>
             <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight flex items-center gap-2">
               {title}

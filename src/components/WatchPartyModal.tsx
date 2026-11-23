@@ -40,20 +40,20 @@ export default function WatchPartyModal({ movie, onClose }: WatchPartyModalProps
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-xl p-0 sm:p-4 overflow-hidden animate-fade-in">
-      <div className="relative w-full h-full max-w-[1600px] max-h-[920px] bg-[#070b16] sm:rounded-2xl border border-cyan-500/30 shadow-2xl flex flex-col overflow-hidden">
+      <div className="relative w-full h-full max-w-[1600px] max-h-[920px] bg-[#070b16] sm:rounded-2xl border border-pink-500/30 shadow-2xl flex flex-col overflow-hidden">
         {/* Top Stream Bar */}
         <div className="h-14 px-4 bg-[#0a0f21] border-b border-white/5 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
-            <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-950 border border-cyan-400 text-cyan-300 text-xs font-black tracking-wider">
-              <Radio className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+            <span className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-950 border border-pink-400 text-pink-300 text-xs font-black tracking-wider">
+              <Radio className="w-3.5 h-3.5 text-pink-400 animate-pulse" />
               LIVE THEATER
             </span>
             <h2 className="text-sm sm:text-base font-bold text-white truncate max-w-xs sm:max-w-md">
               {movie.title} • Watch Party
             </h2>
             <div className="hidden md:flex items-center gap-1 text-xs text-slate-400 font-medium">
-              <Users className="w-3.5 h-3.5 text-cyan-400 ml-2" />
-              <span className="font-bold text-cyan-300">{viewers.toLocaleString()}</span> watching
+              <Users className="w-3.5 h-3.5 text-pink-400 ml-2" />
+              <span className="font-bold text-pink-300">{viewers.toLocaleString()}</span> watching
             </div>
           </div>
 
@@ -103,7 +103,7 @@ export default function WatchPartyModal({ movie, onClose }: WatchPartyModalProps
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60 flex items-center justify-center">
                     <div className="text-center space-y-3">
-                      <div className="w-16 h-16 rounded-full gradient-reel mx-auto flex items-center justify-center shadow-xl shadow-cyan-500/30">
+                      <div className="w-16 h-16 rounded-full gradient-reel mx-auto flex items-center justify-center shadow-xl shadow-pink-500/30">
                         <Play className="w-7 h-7 text-white fill-white ml-1" />
                       </div>
                       <p className="text-base font-bold text-white tracking-wide">
@@ -145,7 +145,7 @@ export default function WatchPartyModal({ movie, onClose }: WatchPartyModalProps
                 </button>
                 <div className="hidden sm:block">
                   <p className="text-xs font-bold text-slate-100">{movie.title}</p>
-                  <p className="text-[11px] text-cyan-400 font-medium">Synced with Host @CinemaGodfather</p>
+                  <p className="text-[11px] text-pink-400 font-medium">Synced with Host @CinemaGodfather</p>
                 </div>
               </div>
 

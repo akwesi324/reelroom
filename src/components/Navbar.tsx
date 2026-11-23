@@ -45,16 +45,16 @@ export default function Navbar({
             onClick={() => setActiveTab('explore')}
             className="flex items-center gap-2.5 cursor-pointer group select-none"
           >
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl gradient-reel flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-400/40 transition-all shrink-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl gradient-reel flex items-center justify-center shadow-lg shadow-pink-500/20 group-hover:shadow-pink-400/40 transition-all shrink-0">
               <Film className="w-5 h-5 text-white" />
             </div>
             <div className="hidden xs:block">
               <div className="flex items-center gap-1.5">
-                <span className="text-lg sm:text-xl font-black tracking-wider bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-300 bg-clip-text text-transparent">
+                <span className="text-lg sm:text-xl font-black tracking-wider bg-gradient-to-r from-[#e0153a] via-[#ff1f8f] to-white bg-clip-text text-transparent">
                   REELROOM
                 </span>
                 {hasLiveParties ? (
-                  <span className="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-cyan-950/90 text-cyan-300 border border-cyan-400/50 shadow-sm shadow-cyan-500/20">
+                  <span className="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-red-950/90 text-pink-300 border border-pink-400/50 shadow-sm shadow-pink-500/20">
                     LIVE
                   </span>
                 ) : (
@@ -75,7 +75,7 @@ export default function Navbar({
               onClick={() => setActiveTab('explore')}
               className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
                 activeTab === 'explore'
-                  ? 'text-cyan-300 bg-cyan-950/60 border border-cyan-500/30'
+                  ? 'text-pink-300 bg-red-950/60 border border-pink-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
             >
@@ -92,11 +92,11 @@ export default function Navbar({
               }}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
                 activeTab === 'watchrooms'
-                  ? 'text-cyan-300 bg-cyan-950/60 border border-cyan-500/30'
+                  ? 'text-pink-300 bg-red-950/60 border border-pink-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
             >
-              <Radio className={`w-4 h-4 ${hasLiveParties ? 'text-cyan-400 animate-pulse' : 'text-slate-400'}`} />
+              <Radio className={`w-4 h-4 ${hasLiveParties ? 'text-pink-400 animate-pulse' : 'text-slate-400'}`} />
               Watch Parties
               {hasLiveParties && (
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
@@ -108,13 +108,13 @@ export default function Navbar({
               onClick={() => setActiveTab('upcoming')}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
                 activeTab === 'upcoming'
-                  ? 'text-cyan-300 bg-cyan-950/60 border border-cyan-500/30'
+                  ? 'text-pink-300 bg-red-950/60 border border-pink-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
             >
-              <Calendar className="w-4 h-4 text-cyan-400" />
+              <Calendar className="w-4 h-4 text-pink-400" />
               Coming Soon
-              <span className="text-[10px] font-bold px-1.5 py-0.2 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+              <span className="text-[10px] font-bold px-1.5 py-0.2 rounded bg-pink-500/20 text-pink-300 border border-pink-500/30">
                 {upcomingCount}
               </span>
             </button>
@@ -149,14 +149,14 @@ export default function Navbar({
               onClick={() => setActiveTab('watchlist')}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
                 activeTab === 'watchlist'
-                  ? 'text-cyan-300 bg-cyan-950/60 border border-cyan-500/30'
+                  ? 'text-pink-300 bg-red-950/60 border border-pink-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
             >
               <Bookmark className="w-4 h-4" />
               Watchlist
               {watchlistCount > 0 && (
-                <span className="px-1.5 py-0.2 rounded-full bg-cyan-500 text-black text-xs font-bold">
+                <span className="px-1.5 py-0.2 rounded-full bg-pink-500 text-black text-xs font-bold">
                   {watchlistCount}
                 </span>
               )}
@@ -169,10 +169,10 @@ export default function Navbar({
           {/* Search bar */}
           <div
             className={`relative flex items-center rounded-xl bg-slate-900/80 border border-slate-700/60 px-3 py-1.5 transition-all duration-300 ${
-              isSearchExpanded ? 'w-52 sm:w-64 border-cyan-500/60 ring-2 ring-cyan-500/20' : 'w-36 sm:w-56'
+              isSearchExpanded ? 'w-52 sm:w-64 border-pink-500/60 ring-2 ring-pink-500/20' : 'w-36 sm:w-56'
             }`}
           >
-            <Search className="w-4 h-4 text-cyan-400 mr-2 shrink-0" />
+            <Search className="w-4 h-4 text-pink-400 mr-2 shrink-0" />
             <input
               type="text"
               placeholder="Search movies, year, director..."
@@ -196,15 +196,15 @@ export default function Navbar({
           </div>
 
           {/* Online Fans indicator */}
-          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-cyan-500/30 text-xs font-medium text-slate-200 shadow-md">
+          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-pink-500/30 text-xs font-medium text-slate-200 shadow-md">
             <span className="flex h-2 w-2 relative">
               {hasLiveParties && (
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
               )}
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
             </span>
-            <Users className="w-3.5 h-3.5 text-cyan-400" />
-            <span className="font-semibold text-cyan-300">8,270</span> Online
+            <Users className="w-3.5 h-3.5 text-pink-400" />
+            <span className="font-semibold text-pink-300">8,270</span> Online
           </div>
         </div>
       </div>

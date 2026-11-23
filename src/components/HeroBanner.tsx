@@ -43,15 +43,15 @@ export default function HeroBanner({
           {/* Status Badges */}
           <div className="flex flex-wrap items-center gap-2.5">
             {movie.is_upcoming ? (
-              <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-400 text-cyan-300 text-xs font-bold tracking-wide shadow-lg shadow-cyan-500/20">
-                <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+              <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-950/80 border border-pink-400 text-pink-300 text-xs font-bold tracking-wide shadow-lg shadow-pink-500/20">
+                <Calendar className="w-3.5 h-3.5 text-pink-400" />
                 COMING TO THEATERS • {formatReleaseDate(movie.release_date)}
               </span>
             ) : movie.is_streaming_live ? (
-              <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-400 text-cyan-300 text-xs font-bold tracking-wide shadow-lg shadow-cyan-500/20">
-                <Radio className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+              <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-950/80 border border-pink-400 text-pink-300 text-xs font-bold tracking-wide shadow-lg shadow-pink-500/20">
+                <Radio className="w-3.5 h-3.5 text-pink-400 animate-pulse" />
                 TWITCH WATCHPARTY LIVE
-                <span className="flex items-center gap-1 pl-1 text-[11px] text-cyan-200">
+                <span className="flex items-center gap-1 pl-1 text-[11px] text-pink-200">
                   <Users className="w-3 h-3" />
                   {movie.live_viewers?.toLocaleString()}
                 </span>
@@ -86,7 +86,7 @@ export default function HeroBanner({
 
           {/* Tagline */}
           {movie.tagline && (
-            <p className="text-sm sm:text-base font-medium italic text-cyan-300/90 tracking-wide">
+            <p className="text-sm sm:text-base font-medium italic text-pink-300/90 tracking-wide">
               &ldquo;{movie.tagline}&rdquo;
             </p>
           )}
@@ -112,7 +112,7 @@ export default function HeroBanner({
           <div className="flex flex-wrap items-center gap-3 pt-4">
             <button
               onClick={() => onJoinWatchParty(movie)}
-              className="flex items-center gap-2 px-6 py-3 rounded-xl gradient-reel gradient-reel-hover text-white text-sm font-bold tracking-wide shadow-lg shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+              className="flex items-center gap-2 px-6 py-3 rounded-xl gradient-reel gradient-reel-hover text-white text-sm font-bold tracking-wide shadow-lg shadow-pink-500/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
             >
               <Play className="w-4 h-4 fill-white" />
               {movie.is_upcoming ? 'Watch Official Trailer' : 'Enter Live Watchroom'}
@@ -122,7 +122,7 @@ export default function HeroBanner({
               onClick={() => onOpenDetails(movie)}
               className="flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-700/80 hover:border-slate-500 text-slate-100 text-sm font-semibold transition-all shadow-md"
             >
-              <Info className="w-4 h-4 text-cyan-400" />
+              <Info className="w-4 h-4 text-pink-400" />
               IMDb Cast & Details
             </button>
 
@@ -130,13 +130,13 @@ export default function HeroBanner({
               onClick={() => onToggleWatchlist(movie)}
               className={`p-3 rounded-xl border transition-all ${
                 isWatchlisted
-                  ? 'bg-cyan-950/80 border-cyan-400 text-cyan-300 shadow-md shadow-cyan-500/20'
+                  ? 'bg-red-950/80 border-pink-400 text-pink-300 shadow-md shadow-pink-500/20'
                   : 'bg-slate-900/80 border-slate-700 text-slate-300 hover:text-white hover:border-slate-500'
               }`}
               title={isWatchlisted ? 'Remove from Watchlist' : 'Add to Watchlist'}
             >
               {isWatchlisted ? (
-                <BookmarkCheck className="w-4 h-4 text-cyan-400" />
+                <BookmarkCheck className="w-4 h-4 text-pink-400" />
               ) : (
                 <Bookmark className="w-4 h-4" />
               )}
